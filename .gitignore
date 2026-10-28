@@ -1,0 +1,43 @@
+
+# Entorno virtual
+.venv/
+venv/
+
+# Archivos temporales de Python
+__pycache__/
+*.pyc
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Datos históricos y potencialmente sensibles
+*.xlsx
+*.xls
+*.csv
+
+# Audios y evidencias locales
+*.wav
+*.mp3
+*.m4a
+evidencias/
+
+# Configuración privada
+.env
+.streamlit/secrets.toml
+
+# Archivos locales de pruebas
+prueba_audio.txt
+prueba_small/
+requirements_local.txt
+
+# Respaldos de la aplicación
+app/app_respaldo.py
+
+# Catálogo pendiente de revisión y autorización
+data/catalogo_versos.csv
+
+!data/catalogo_versos_demo.csv
+
+# Modelo original entrenado con datos historicos
+models/modelo_inicial.joblib
