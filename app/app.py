@@ -6,6 +6,12 @@ import tempfile
 import joblib
 import streamlit as st
 import whisper
+
+import sys
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+
 from src.buscar_versos import buscar_versos
 
 
