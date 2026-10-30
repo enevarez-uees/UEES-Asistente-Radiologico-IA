@@ -1,0 +1,16 @@
+{
+    "registros_entrenamiento": 201,
+    "registros_evaluacion": 71,
+    "f1_macro_entrenamiento": 0.9722,
+    "f1_macro_validacion_cruzada": 0.9125,
+    "accuracy_evaluacion": 0.8169,
+    "balanced_accuracy_evaluacion": 0.7386,
+    "f1_macro_evaluacion": 0.7434,
+    "recall_clase_positiva": 0.5882,
+    "verdaderos_negativos": 48,
+    "falsos_positivos": 6,
+    "falsos_negativos": 7,
+    "verdaderos_positivos": 10,
+    "tasa_falsos_negativos": 0.4118,
+    "tasa_falsos_positivos": 0.1111
+}
