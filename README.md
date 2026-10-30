@@ -1,150 +1,136 @@
-\# UEES — Asistente Radiológico Experimental con Inteligencia Artificial
+# UEES — Asistente Radiológico Experimental con Inteligencia Artificial
 
+**Proyecto Integrador Final — Maestría en Inteligencia Artificial, UEES**
 
+**Título del proyecto:** Sistema de apoyo a la generación de informes radiológicos mediante reconocimiento de voz y procesamiento de lenguaje natural.
 
-\## Proyecto Integrador Final — Maestría en Inteligencia Artificial
+> **Aviso:** Prototipo exclusivamente académico. No es un dispositivo médico, no realiza diagnósticos y no debe utilizarse para decisiones clínicas ni con información identificable de pacientes.
 
+## 1. Descripción y objetivo
 
+Este proyecto explora un flujo asistido para elaborar borradores de informes radiológicos. Integra reconocimiento automático de voz, procesamiento de texto, clasificación experimental y recuperación de fragmentos predefinidos («versos»). El profesional conserva el control de la transcripción, la selección de textos y la revisión del informe.
 
-\*\*Título:\*\* Sistema de apoyo a la generación de informes radiológicos mediante reconocimiento de voz y procesamiento de lenguaje natural.
+**Problema abordado:** la elaboración manual de informes puede requerir transcripción, búsqueda de expresiones estandarizadas y edición repetitiva. El prototipo investiga si una combinación de herramientas de IA puede asistir estas tareas; **no se ha demostrado un beneficio clínico ni una reducción cuantificada de tiempos**.
 
+## 2. Demostración pública
 
+- **Aplicación Streamlit:** https://uees-asistente-radiologico-ia.streamlit.app/
+- **Código fuente:** https://github.com/enevarez-uees/UEES-Asistente-Radiologico-IA
 
-\## Descripción
+La demostración utiliza datos y versos sintéticos. No ingresar información personal o clínica real. La disponibilidad de la aplicación depende del servicio de alojamiento.
 
+## 3. Flujo funcional
 
+1. **Dictado y transcripción:** Whisper convierte audio en texto.
+2. **Corrección humana:** el usuario revisa y modifica la transcripción.
+3. **Clasificación experimental:** TF-IDF + red neuronal multicapa (MLP) predice una etiqueta binaria *proxy* relacionada con la presencia de algún verso configurado en el informe histórico.
+4. **Búsqueda textual:** TF-IDF y similitud del coseno recuperan versos candidatos, filtrados por el código CPT elegido.
+5. **Composición del borrador:** el usuario selecciona fragmentos y edita el informe.
+6. **Revisión y aprobación simulada:** cierre académico del flujo, sin valor de firma médica.
 
-Prototipo académico desarrollado para apoyar el proceso de elaboración de informes radiológicos mediante técnicas de Inteligencia Artificial.
+**Importante:** el clasificador no diagnostica enfermedades ni elige un verso específico. La clasificación y la búsqueda son componentes distintos. El CPT filtra el catálogo de búsqueda, pero no es una variable predictora del clasificador.
 
+## 4. Datos y modelos
 
+| Entorno | Datos | Finalidad | Precaución |
+|---|---|---|---|
+| Académico original | 272 estudios históricos, tres códigos CPT | Entrenamiento, optimización y evaluación experimental | Datos originales no publicados |
+| Demostración pública | 20 ejemplos sintéticos y catálogo reducido de versos sintéticos | Mostrar la interacción con la aplicación | Sus resultados no equivalen a los del modelo académico |
 
-La aplicación permite transcribir dictados mediante Whisper, corregir el texto obtenido, realizar una clasificación experimental mediante Machine Learning, buscar textos radiológicos predefinidos utilizando TF-IDF y similitud del coseno, y generar un borrador editable que requiere revisión profesional.
+El modelo académico utiliza TF-IDF y MLP. La Semana 5 analizó arquitectura, regularización, tasa de aprendizaje y número de características de TF-IDF mediante validación cruzada agrupada. El conjunto independiente de prueba no se utilizó para seleccionar hiperparámetros.
 
+## 5. Resultados experimentales
 
+**Evaluación independiente del modelo académico original (71 estudios):**
 
-\## Aplicación pública
+| Métrica | Resultado |
+|---|---:|
+| Exactitud (*accuracy*) | 0.8169 |
+| Exactitud balanceada | 0.7386 |
+| F1 macro | 0.7434 |
+| Recall de clase 1 | 0.5882 |
+| Precisión de clase 1 | 0.6250 |
+| F1 de clase 1 | 0.6061 |
 
+Matriz de confusión: `[[48, 6], [7, 10]]`. En esta evaluación, el modelo no identificó 7 de los 17 casos positivos; esta limitación es relevante y **no permite afirmar idoneidad clínica**.
 
+En validación cruzada agrupada, la configuración base seleccionada obtuvo un F1 macro medio aproximado de **0.9125**. La diferencia frente al F1 macro del conjunto de prueba (**0.7434**) evidencia una brecha de generalización que debe investigarse con más datos. Estos resultados **no corresponden al modelo público sintético**.
 
-https://uees-asistente-radiologico-ia.streamlit.app/
+La confianza del clasificador no es una probabilidad clínica calibrada y la similitud del coseno no representa certeza diagnóstica.
 
+**Evidencias y análisis:** [Optimización](docs/optimizacion.md) · [Resultados Semana 5](results/semana5/).
 
+## 6. Organización del repositorio
 
-La aplicación está desplegada en Streamlit Community Cloud y puede utilizarse desde un navegador web.
+```text
+app/          Aplicación Streamlit
+src/          Funciones de entrenamiento y búsqueda
+scripts/      Entrenamiento del modelo sintético de demostración
+data/         Catálogo público de demostración
+models/       Modelo sintético de demostración
+docs/         Documentación del proyecto
+notebooks/    Notebooks académicos publicables, sin datos identificables
+tests/        Pruebas automatizadas con datos sintéticos
+results/      Métricas y gráficos de experimentación
+```
 
+Documentación complementaria disponible en [`docs/`](docs/). La existencia y el contenido de cada archivo deben verificarse en la versión publicada del repositorio.
 
+## 7. Instalación y ejecución local
 
-\## Funcionalidades
+Requisitos: Python compatible con las dependencias del proyecto, `pip` y **FFmpeg** para procesamiento de audio.
 
+```bash
+git clone https://github.com/enevarez-uees/UEES-Asistente-Radiologico-IA.git
+cd UEES-Asistente-Radiologico-IA
+python -m venv .venv
+```
 
+Activar el entorno virtual:
 
-1\. \*\*Reconocimiento de voz:\*\* grabación y transcripción de dictados mediante OpenAI Whisper.
+- Windows: `.venv\Scripts\activate`
+- macOS/Linux: `source .venv/bin/activate`
 
-2\. \*\*Corrección manual:\*\* edición de la transcripción antes del análisis.
+Instalar dependencias y ejecutar:
 
-3\. \*\*Clasificación experimental:\*\* modelo TF-IDF + MLP que predice una etiqueta binaria proxy relacionada con la presencia de versos configurados.
+```bash
+python -m pip install -r requirements.txt
+python -m streamlit run app/app.py
+```
 
-4\. \*\*Búsqueda de versos:\*\* recuperación de textos relacionados mediante TF-IDF y similitud del coseno, considerando el CPT seleccionado.
+Para ejecutar las pruebas unitarias:
 
-5\. \*\*Generación de borradores:\*\* incorporación de versos seleccionados a un informe editable.
+```bash
+python -m pip install pytest
+python -m pytest -q tests/
+```
 
-6\. \*\*Revisión y aprobación simulada:\*\* confirmación académica de revisión del contenido.
+El entrenamiento del modelo académico original requiere archivos históricos autorizados que **no están incluidos** en este repositorio. El modelo público se entrena por separado con datos sintéticos mediante `scripts/entrenar_modelo_demo.py`.
 
+## 8. Seguridad, privacidad y ética
 
+- No ingresar nombres, cédulas, imágenes ni audios identificables de pacientes en la aplicación pública.
+- Los datos históricos y el catálogo original permanecen fuera del repositorio.
+- El modelo académico original no se distribuye públicamente.
+- Cargar archivos `joblib` únicamente desde fuentes confiables.
+- Toda transcripción, sugerencia y composición debe ser revisada por una persona competente.
+- La aprobación implementada es una simulación académica y no una firma profesional.
 
-\## Modelos y datos
+## 9. Limitaciones y trabajo futuro
 
+- Posibles errores de Whisper con terminología médica, ruido y variaciones del dictado.
+- Tamaño reducido de la muestra académica y brecha entre validación cruzada y prueba independiente.
+- Etiqueta de clasificación *proxy*; no equivale a enfermedad, hallazgo radiológico validado ni pertinencia clínica.
+- Recuperación basada en semejanza textual, no en comprensión diagnóstica.
+- Modelo público con solo 20 ejemplos sintéticos y sin validación clínica.
+- Falta de validación prospectiva con dictados reales, evaluación por especialistas y medición de impacto operativo.
 
+Como continuidad se propone ampliar y depurar los datos autorizados, realizar evaluación prospectiva con especialistas, medir errores de transcripción y relevancia de versos, estudiar calibración e incorporar controles adicionales de privacidad y trazabilidad.
 
-El proyecto contempla dos escenarios:
+## 10. Material audiovisual de entrega
 
+Los enlaces al video de demostración y a la defensa individual se incorporarán aquí **cuando estén grabados y publicados**. No se incluyen enlaces ficticios.
 
+---
 
-\- \*\*Modelo académico original:\*\* entrenado con 272 estudios históricos para tres códigos CPT. En la evaluación de la Semana 5 obtuvo F1 macro de 0.7434, recall de clase 1 de 0.5882 y exactitud de 0.8169.
-
-\- \*\*Modelo público de demostración:\*\* entrenado con 20 ejemplos sintéticos. Se utiliza en Streamlit Cloud para permitir la demostración sin publicar información histórica potencialmente sensible.
-
-
-
-El catálogo público contiene versos sintéticos de demostración. No representa el catálogo completo utilizado en el entorno local.
-
-
-
-\*\*Las métricas del modelo académico original no corresponden al modelo sintético publicado.\*\*
-
-
-
-\## Interpretación de los resultados
-
-
-
-La clase 1 indica una asociación experimental con la presencia de algún verso, según una etiqueta proxy.
-
-
-
-La clasificación no identifica enfermedades ni determina qué verso específico corresponde. La búsqueda de versos es un componente independiente.
-
-
-
-Los porcentajes de confianza del clasificador no representan probabilidades clínicas calibradas. Los porcentajes de similitud miden semejanza textual, no certeza diagnóstica.
-
-
-
-El CPT seleccionado no se utiliza como variable predictora del clasificador; sí permite filtrar la búsqueda de versos.
-
-
-
-\## Ejecución local
-
-
-
-1\. Instalar Python y las dependencias indicadas en `requirements.txt`.
-
-2\. Instalar FFmpeg para el procesamiento de audio.
-
-3\. Ejecutar la aplicación:
-
-
-
-&#x20;  `python -m streamlit run app/app.py`
-
-
-
-Para entrenar el modelo académico original, se requieren los archivos históricos correspondientes, utilizados únicamente de manera local y con autorización.
-
-
-
-\## Privacidad y seguridad
-
-
-
-\- No introducir nombres, cédulas ni información que permita identificar pacientes en la aplicación pública.
-
-\- Los archivos históricos y el catálogo original no se publican en GitHub.
-
-\- El modelo original `models/modelo\_inicial.joblib` permanece excluido del repositorio por precaución de privacidad.
-
-\- Los artefactos `joblib` deben cargarse únicamente desde fuentes confiables.
-
-
-
-\## Limitaciones
-
-
-
-\- El reconocimiento de voz puede producir errores, especialmente con términos médicos.
-
-\- La transcripción debe revisarse y corregirse antes de continuar.
-
-\- El modelo académico original fue evaluado con informes escritos, no validado clínicamente con dictados reales.
-
-\- El modelo público utiliza datos sintéticos y no cuenta con validación clínica.
-
-\- Los versos sugeridos y los borradores requieren revisión humana.
-
-\- La aprobación implementada es una simulación académica, no una firma médica.
-
-
-
-\*\*Este sistema es exclusivamente un prototipo académico y no está destinado a emitir diagnósticos ni a utilizarse para decisiones médicas reales.\*\*
-
+**Alcance final:** demostración académica de integración de IA y PLN con supervisión humana obligatoria; no apta para uso clínico real.
