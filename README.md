@@ -129,7 +129,9 @@ Como continuidad se propone ampliar y depurar los datos autorizados, realizar ev
 
 ## 10. Material audiovisual de entrega
 
-Los enlaces al video de demostración y a la defensa individual se incorporarán aquí **cuando estén grabados y publicados**. No se incluyen enlaces ficticios.
+- Video Pitch: https://drive.google.com/file/d/1M7lSRGGsZjr-Xvchuf3VZXxtI-vOqnpb/view?usp=drive_link
+
+- Video Respuesta de las Preguntas: https://drive.google.com/file/d/1BReqVvB8YvqfxpmLKxoM4PP9Sy4DQAG_/view?usp=drive_link
 
 ---
 
