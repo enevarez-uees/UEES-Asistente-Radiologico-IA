@@ -36,7 +36,7 @@ with st.sidebar:
     if ES_MODELO_DEMO:
         st.info("Modelo activo: demostración sintética")
         st.write(
-            "Entrenado con 20 ejemplos artificiales. "
+            "Esta versión utiliza datos sintéticos y un catálogo de referencia con fines académicos. Los resultados son orientativos y requieren revisión profesional."
             "No dispone de evaluación clínica ni de métricas "
             "comparables con el modelo académico original."
         )
