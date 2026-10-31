@@ -24,8 +24,8 @@ Seleccionar 73090, grabar, transcribir, analizar, inspeccionar sugerencias, sele
 
 **Video 1 – Pitch y demostración funcional**
 
-https://youtu.be/2kyP11aXgAA
+https://drive.google.com/file/d/1M7lSRGGsZjr-Xvchuf3VZXxtI-vOqnpb/view?usp=sharing
 
 **Video 2 – Defensa técnica y respuestas a las 10 preguntas**
 
-Pendiente de publicación.
+https://drive.google.com/file/d/1BReqVvB8YvqfxpmLKxoM4PP9Sy4DQAG_/view?usp=sharing
