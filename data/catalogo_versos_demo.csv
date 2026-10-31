@@ -1,5 +1,10 @@
-﻿CODIGO_VERSO_PATOLOGICO,NOMBRE_VERSO,TEXTO_VERSO,CODIGO_CPT
-DEMO001,CAMBIOS DEGENERATIVOS LUMBARES,Se observan cambios degenerativos en la columna lumbar con disminucion del espacio intervertebral L4-L5.,72100
-DEMO002,ALINEACION LUMBAR CONSERVADA,La alineacion de los cuerpos vertebrales lumbares se encuentra conservada.,72100
-DEMO003,FRACTURA DE ANTEBRAZO,Se observa trazo de fractura en el radio distal.,73090
-DEMO004,CAMBIOS EN ARTICULACIONES DE LA MANO,Se observan cambios degenerativos en las articulaciones interfalangicas.,73120
+CODIGO_CPT,CODIGO_VERSO_PATOLOGICO,NOMBRE_VERSO,TEXTO_VERSO
+72100,DEMO-LUM-01,Columna lumbar sin hallazgos agudos,La alineación lumbar está conservada. No se identifican alteraciones óseas agudas evidentes en las proyecciones obtenidas.
+72100,DEMO-LUM-02,Espacios intervertebrales conservados,Los espacios intervertebrales lumbares se encuentran conservados en las proyecciones disponibles.
+72100,DEMO-LUM-03,Cambios degenerativos lumbares,Se observan cambios degenerativos de la columna lumbar que deben correlacionarse con los hallazgos de imagen y la evaluación clínica.
+73090,DEMO-ANT-01,Antebrazo sin fractura,No se observan fracturas ni luxaciones evidentes del radio o del cúbito. La alineación ósea está conservada.
+73090,DEMO-ANT-02,Tejidos blandos del antebrazo,Los tejidos blandos del antebrazo no presentan alteraciones radiográficas evidentes.
+73090,DEMO-ANT-03,Fractura de antebrazo,Se identifica trazo de fractura en un hueso del antebrazo. La localización y el desplazamiento requieren descripción y verificación por el profesional.
+73120,DEMO-MAN-01,Mano sin fractura,No se identifican fracturas ni luxaciones evidentes en la mano. La alineación ósea se encuentra conservada.
+73120,DEMO-MAN-02,Espacios articulares de mano,Los espacios articulares de la mano están conservados y los tejidos blandos no presentan alteraciones evidentes.
+73120,DEMO-MAN-03,Fractura de falange,Se observa un trazo de fractura en una falange de la mano. La ubicación y el desplazamiento deben verificarse con las imágenes.
