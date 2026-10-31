@@ -19,3 +19,13 @@ Publicar **el contenido completo de esta carpeta** en la raíz de un repositorio
 «Radiografía de antebrazo derecho en dos proyecciones. No se observan fracturas ni luxaciones. La alineación del radio y el cúbito se encuentra conservada. La densidad ósea es normal. Los tejidos blandos no presentan alteraciones evidentes.»
 
 Seleccionar 73090, grabar, transcribir, analizar, inspeccionar sugerencias, seleccionar frases apropiadas y crear borrador. Un profesional debe validar cualquier resultado.
+
+## Videos de presentación del proyecto
+
+**Video 1 – Pitch y demostración funcional**
+
+https://youtu.be/2kyP11aXgAA
+
+**Video 2 – Defensa técnica y respuestas a las 10 preguntas**
+
+Pendiente de publicación.
